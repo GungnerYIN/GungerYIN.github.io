@@ -1,0 +1,473 @@
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<style>
+								body {
+									background-color: white; /* Ensure the iframe has a white background */
+								}
+
+								
+							</style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星火数据科技 · 图像数据标注实习</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            background: #fff;
+        }
+        /* 顶部大图 */
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .hero .logo {
+            width: 60px;
+            height: 60px;
+            background: #e94560;
+            border-radius: 16px;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .hero h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .hero .subtitle {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+        .hero .badge-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+        .hero .badge {
+            background: rgba(255,255,255,0.15);
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 12px;
+            backdrop-filter: blur(4px);
+        }
+        /* 内容卡片 */
+        .section {
+            padding: 24px 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .section h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section h2 .icon {
+            font-size: 20px;
+        }
+        .section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 16px 0 8px;
+        }
+        .section p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        .section ul, .section ol {
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+        .section li {
+            margin-bottom: 6px;
+            color: #555;
+        }
+        /* 高亮卡片 */
+        .highlight-box {
+            background: #fff8f0;
+            border-left: 4px solid #e94560;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        .highlight-box.green {
+            background: #f0faf5;
+            border-left-color: #27ae60;
+        }
+        .highlight-box.blue {
+            background: #f0f5fa;
+            border-left-color: #2980b9;
+        }
+        .highlight-box .label {
+            font-weight: 700;
+            color: #e94560;
+            margin-bottom: 4px;
+        }
+        .highlight-box.green .label {
+            color: #27ae60;
+        }
+        .highlight-box.blue .label {
+            color: #2980b9;
+        }
+        /* 表格 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        table th {
+            background: #f8f9fa;
+            padding: 10px 6px;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid #e9ecef;
+        }
+        table td {
+            padding: 8px 6px;
+            text-align: center;
+            border: 1px solid #e9ecef;
+        }
+        table .highlight-row {
+            background: #fff8f0;
+            font-weight: 600;
+        }
+        table .top-row {
+            background: #fff0f0;
+            font-weight: 700;
+        }
+        /* 大数字 */
+        .big-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: #e94560;
+            text-align: center;
+            margin: 8px 0;
+        }
+        /* 按钮 */
+        .cta-button {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 20px auto;
+            padding: 14px 0;
+            background: #e94560;
+            color: #fff;
+            text-align: center;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(233,69,96,0.3);
+        }
+        .cta-button:hover {
+            background: #d63852;
+        }
+        /* 二维码区域 */
+        .qr-area {
+            text-align: center;
+            padding: 20px;
+        }
+        .qr-area img {
+            width: 180px;
+            height: 180px;
+            border-radius: 12px;
+            border: 2px solid #eee;
+        }
+        .qr-area .tip {
+            color: #999;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+        /* 警告框 */
+        .warning-note {
+            background: #fffbe6;
+            border: 1px solid #ffe58f;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin: 12px 0;
+            font-size: 13px;
+            color: #8c6d00;
+        }
+        .warning-note strong {
+            color: #d46b08;
+        }
+        /* 分隔线 */
+        .divider {
+            border: none;
+            border-top: 1px dashed #ddd;
+            margin: 16px 0;
+        }
+        /* 底部 */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #aaa;
+            font-size: 12px;
+            background: #fafafa;
+        }
+        /* 手机适配 */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 20px;
+            }
+            table {
+                font-size: 12px;
+            }
+            table th, table td {
+                padding: 6px 4px;
+            }
+            .big-number {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 顶部 -->
+    <div class="hero">
+        <div class="logo">🌐</div>
+        <h1>星火数据科技有限公司</h1>
+        <p class="subtitle">图像数据标注员 · 在校远程实习</p>
+        <div class="badge-row">
+            <span class="badge">🏠 宿舍就能干</span>
+            <span class="badge">⏰ 时间自由</span>
+            <span class="badge">💰 时薪20+</span>
+            <span class="badge">📄 可开实习证明</span>
+        </div>
+    </div>
+
+    <!-- 一、我们是谁 -->
+    <div class="section">
+        <h2><span class="icon">📍</span>我们是谁 & 你要做什么</h2>
+        <p>我们是<strong>星火数据科技有限公司</strong>，坐标长沙市浏阳市。我们做的事，是给人工智能当"老师"——<strong>图像数据标注</strong>。</p>
+        <p>具体工作：你用自己的电脑登录标注平台，按照任务视频教程，用鼠标<strong>沿着图片里行人、车辆的轮廓进行精准勾勒</strong>。这不是简单的拉矩形框，而是多边形分割标注，需要细心和耐心，但只要跟着教程认真做几次，上手并不难。一张图平均需要<strong>1 到 2 分钟</strong>。</p>
+    </div>
+
+    <!-- 二、工作方式 -->
+    <div class="section">
+        <h2><span class="icon">💻</span>工作方式</h2>
+        <p><strong>远程办公</strong>：宿舍、家里，有网就能干。时间完全自己安排，没有固定打卡。达标按<strong>月累计总量</strong>算，建议周六日休息一天到一天半，劳逸结合。</p>
+        <p><strong>🏢 我们建议你来共享工位办公</strong>：我们在<strong>浏阳市永安镇株陵小区</strong>设有完全免费的共享工位，配好<strong>24寸高清显示器</strong>。开放时间是<strong>每天早上 6:30 到晚上 23:00</strong>，凭电子密码进入（不可过夜）。大屏幕能显著提升你的产量——产量上去了，收入就上去了。</p>
+    </div>
+
+    <!-- 三、新人福利 -->
+    <div class="section">
+        <h2><span class="icon">🎁</span>新人专属福利（帮你踏实度过第一个月）</h2>
+        <p>第一个月培训+适应期，产量低、计件工资少，很多人心里会慌。所以我们准备了<strong>新人保护包</strong>：</p>
+
+        <div class="highlight-box">
+            <p class="label">1. 培训+试岗通过，现金当场发</p>
+            <p><strong>✅ 通关红包 200 元</strong>：一周培训 + 一周适应期，两周都顺利通过后，直接发 200 元现金。奖励你认真学完、坚持下来的，<strong>不用还</strong>。</p>
+            <p><strong>✅ 预支款 500 元</strong>：同样两周考核通过后，公司先预支 500 元给你。这笔钱从接下来三个月的计件补贴里分期扣回（每月约扣 167 元），<strong>无利息，不计手续费</strong>。</p>
+            <p style="margin-top:8px;">两笔合计 <strong style="color:#e94560;font-size:18px;">700 元</strong>，培训+试岗结束后直接到手。在永安镇，够你吃一个月的食堂。</p>
+        </div>
+
+        <div class="highlight-box green">
+            <p class="label">2. 首月新人保护价</p>
+            <p>第一个月（含培训周和适应周），<strong>所有计件统一按 0.60 元/张结算</strong>，不按正式档位考核。不会因为你是新手就压单价。</p>
+            <p>第一个月<strong>设备网络补贴 180 元无条件发放</strong>，不需达标。</p>
+        </div>
+
+        <div class="warning-note">
+            <strong>⚠️ 注意：</strong>培训周和试岗周期间，你做的图按 0.60 元/张正常计件——但这部分走正常工资流程，<strong>次月 25 号左右才打到卡上</strong>，不跟红包、预支同时发，别搞混了。
+        </div>
+    </div>
+
+    <!-- 四、实习流程 -->
+    <div class="section">
+        <h2><span class="icon">📋</span>实习流程</h2>
+        <ol>
+            <li><strong>岗前培训（约1周）</strong>：签完线下纸质合同后，带你学平台操作、看视频教程、做试标注。这一周你做的每张图，都按 0.60 元/张发补贴，跟着工资周期发。</li>
+            <li><strong>上岗适应期（第2周）</strong>：正式接任务，同样按 0.60 元/张，对日产量不做硬性考核，让你慢慢找节奏。</li>
+            <li><strong>两周考核节点</strong>：培训期 + 适应期都通过后，发放<strong>200 元通关红包 + 500 元预支款</strong>。</li>
+            <li><strong>正式实习（第3周起）</strong>：按下表正式标准计件。连续一周日均低于 120 张，书面提醒一次；提醒后下一整周仍不达标，合同终止。</li>
+        </ol>
+    </div>
+
+    <!-- 五、计件标准 -->
+    <div class="section">
+        <h2><span class="icon">📊</span>计件补贴标准（这条请仔细看）</h2>
+        <p>单价跟你的<strong>月均日产量</strong>挂钩 [1][2]：</p>
+        <table>
+            <tr><th>月均日产量</th><th>单价</th></tr>
+            <tr><td>&lt; 120 张</td><td>0.50 元</td></tr>
+            <tr><td>120 – 169 张</td><td>0.60 元</td></tr>
+            <tr class="highlight-row"><td>★ 170 – 239 张</td><td><strong>0.70 元</strong></td></tr>
+            <tr class="top-row"><td>★★ ≥ 240 张</td><td><strong>0.75 元</strong></td></tr>
+        </table>
+
+        <h3>● "月均日产量"怎么算？</h3>
+        <p>按<strong>你整个月总共做了多少张图</strong>来算：</p>
+        <div class="highlight-box blue">
+            <p style="text-align:center;font-size:16px;"><strong>月均日产量 = 当月累计提交合格张数 ÷ 26 天</strong></p>
+        </div>
+        <p>我们看的是你一个月的<strong>总产量</strong>，而不是某一天的数据。某天状态不好只干了 100 张也没关系，总量达标，单价就按最高档算 [1][2]。</p>
+
+        <h3>● 三项额外福利</h3>
+        <table>
+            <tr><td>🏠</td><td><strong>住房补贴</strong></td><td>每月 120 元</td></tr>
+            <tr><td>💻</td><td><strong>设备网络报销</strong></td><td>180 元/月（达标即发，首月无条件发）</td></tr>
+            <tr><td>💰</td><td><strong>税费减免</strong></td><td>月补贴≤800元免个税，超出部分依法代扣 [1][2]</td></tr>
+        </table>
+    </div>
+
+    <!-- 六、收入模拟 -->
+    <div class="section">
+        <h2><span class="icon">💸</span>熟练之后，你大概一个月能拿多少？</h2>
+        <p>按一张图 <strong>2 分钟</strong> 算，这是一个比较保守、大多数人能做到的速度。</p>
+        <table>
+            <tr><th>每天投入</th><th>日产量</th><th>月总产量</th><th>单价</th><th>月计件</th><th>+房补+报销</th><th><strong>到手总计</strong></th><th><strong>折合时薪</strong></th></tr>
+            <tr><td>4 小时</td><td>≈120 张</td><td>3,120</td><td>0.60</td><td>1,872</td><td>+300</td><td><strong>≈2,172 元</strong></td><td><strong>≈20.5 元/h</strong></td></tr>
+            <tr><td>6 小时</td><td>≈180 张</td><td>4,680</td><td>0.70</td><td>3,276</td><td>+300</td><td><strong>≈3,576 元</strong></td><td><strong>≈22.5 元/h</strong></td></tr>
+            <tr class="top-row"><td>8 小时</td><td>≈240 张</td><td>6,240</td><td>0.75</td><td>4,680</td><td>+300</td><td><strong>≈4,980 元</strong></td><td><strong>≈23.5 元/h</strong></td></tr>
+        </table>
+        <p style="margin-top:8px;">240 张是新设的突破档位：每天比 170 张档位多投入约 2 小时，月收入就能从三千出头跳到近五千，差距接近<strong>1,400 元</strong>。这份工作的回报，完全由你自己说了算 [1]。</p>
+    </div>
+
+    <!-- 七、第一个月拿多少 -->
+    <div class="section">
+        <h2><span class="icon">📅</span>第一个月能拿多少？踏实的预期在这里</h2>
+        <p>7月初开训，7月只有三周多的工作日。一个零基础新人第一个月大概能做<strong>800 到 1,300 张图</strong>。</p>
+        <p>按首月新人保护价（统一0.60元/张、网补无条件发），你第一个月能拿到的钱：</p>
+        <table>
+            <tr><th>时间</th><th>项目</th><th>金额</th></tr>
+            <tr><td>7月中旬</td><td>通关红包 + 预支款</td><td><strong>700 元现金</strong></td></tr>
+            <tr><td>8月25日左右</td><td>计件补贴 + 房补120 + 意外险100 + 网补180 - 预支扣回167</td><td><strong>≈700 元左右</strong></td></tr>
+            <tr><td colspan="2"><strong>第一个月净得（不含预支）</strong></td><td><strong>≈900 – 1,100 元</strong></td></tr>
+        </table>
+        <p>第一个月到手的钱确实不多，因为培训+适应期产量低、验收也要顺延。但坚持过前两个月，从第三个月开始每月收入就是完整、稳定的了。<strong>第一个月是爬坡期，熬过去，后面的收入全归你。</strong></p>
+    </div>
+
+    <!-- 八、跟其他兼职比 -->
+    <div class="section">
+        <h2><span class="icon">⚡</span>这份收入在永安镇，是什么概念？</h2>
+        <p>学校食堂一顿饭 8-12 块，合租单间月租 300-500 块，一个月基础生活费 800-1,200 块。</p>
+        <p>你每天干 4 小时，到手 2,000 元左右，<strong>基本覆盖全部生活费，不用跟家里伸手</strong>。你每天干 6-8 小时，到手 3,500-5,000 元，<strong>在这个地方，就是完全的经济独立，还能存下钱</strong>。</p>
+
+        <h3>跟其他学生兼职比一比：</h3>
+        <table>
+            <tr><th>工作类型</th><th>时薪</th><th>通勤？</th><th>晒太阳？</th><th>能学到什么？</th><th>自由度</th></tr>
+            <tr><td>奶茶店/餐厅</td><td>12-15 元</td><td>要</td><td>不一定</td><td>几乎没有</td><td>排班说了算</td></tr>
+            <tr><td>发传单/促销</td><td>15-18 元</td><td>要</td><td>要</td><td>零</td><td>低</td></tr>
+            <tr><td>快递分拣</td><td>15-18 元</td><td>要</td><td>不一定，夜班多</td><td>几乎没有</td><td>低</td></tr>
+            <tr class="top-row"><td><strong>数据标注（这份）</strong></td><td><strong>20-23.5 元</strong></td><td><strong>不要</strong></td><td><strong>不要</strong></td><td><strong>作品集 + 行业经验</strong></td><td><strong>极高</strong></td></tr>
+        </table>
+        <p style="margin-top:8px;">时薪比所有常见兼职高出一截，不用通勤、不用晒太阳、不用看排班脸色，还能攒下一份正经的项目经验。<strong>说白了，你在宿舍吹空调赚的钱，比在外面站一天还多。</strong></p>
+    </div>
+
+    <!-- 九、工资发放 -->
+    <div class="section">
+        <h2><span class="icon">🏦</span>工资发放规则</h2>
+        <ul>
+            <li><strong>发放日</strong>：每月 25 号左右发上个月的补贴。</li>
+            <li><strong>验收规则</strong>：你每周提交的图，需要近一周时间验收。一个月四周，月底最后一周的图来不及在当月验完。所以每月 25 号发的是"上个月前三周"已验收合格的部分，剩下一周顺延到下个月。</li>
+            <li><strong>第一、二个月到手会偏少</strong>，这是验收顺延的正常结果。坚持过前两个月，从第三个月起每月收入就是完整、稳定的。</li>
+        </ul>
+    </div>
+
+    <!-- 十、质量 & 退出 -->
+    <div class="section">
+        <h2><span class="icon">✅</span>质量要求 & 退出机制</h2>
+        <ul>
+            <li><strong>质检返工</strong>：每周抽检，不合格需 48 小时内免费返工。同一批返工超 3 次仍不合格，该批次不结算 [2]。</li>
+            <li><strong>想退出</strong>：提前 7 天跟我们说就行 [2]。</li>
+            <li><strong>不想做了别勉强</strong>：这份工作需要耐心。如果发现不适合自己，正常提离职就好。只要在岗期间认真完成了工作任务，无论实习多久，我们都给你开证明。</li>
+        </ul>
+    </div>
+
+    <!-- 十一、实习结束你能带走什么 -->
+    <div class="section">
+        <h2><span class="icon">📜</span>实习结束后，你能带走什么</h2>
+        <p>只要你在岗期间认真完成了工作任务，不管做了多久，我们都给你开：</p>
+        <ul>
+            <li>加盖公章的<strong>《实习证明》</strong> [1]</li>
+            <li>包含日产量、准确率、出勤天数等数据的<strong>《实习鉴定表》</strong> [1]</li>
+            <li><strong>脱敏版标注成果作品集</strong>，找下一份数据 / AI 相关工作时直接展示项目经验 [1]</li>
+        </ul>
+    </div>
+
+    <!-- 十二、转正 -->
+    <div class="section">
+        <h2><span class="icon">🚪</span>关于转正和毕业后的事</h2>
+        <ul>
+            <li><strong>没有直接转正承诺</strong>：实习期满自动终止，不建立劳动关系，不交社保公积金 [2]。我们不想画饼。</li>
+            <li><strong>但有优先通道</strong>：公司每年有约 10 个左右的校招 / 社招正式岗位。实习期间表现优秀的同学，在同等条件下<strong>我们会优先考虑</strong>。这是你靠自己挣来的机会，不是靠承诺换来的。</li>
+        </ul>
+    </div>
+
+    <!-- 十三、其他注意事项 -->
+    <div class="section">
+        <h2><span class="icon">📌</span>需要知道的其他事</h2>
+        <ul>
+            <li><strong>知识产权</strong>：你产出的标注成果，知识产权归公司或客户，不能用于个人展示 [2]。但我们提供的脱敏版作品集，足够你求职用。</li>
+            <li><strong>保密是红线</strong>：所有数据、图片、账号信息，永久保密，不能截图外传或自己复制留存 [2]。</li>
+            <li><strong>意外险</strong>：公司每年补贴 100 元意外险费用（随首月发放），你自行购买。居家办公期间的人身风险由你自己承担 [2]。</li>
+        </ul>
+    </div>
+
+    <!-- 十四、报名 -->
+    <div class="section" style="text-align:center;">
+        <h2 style="text-align:left;"><span class="icon">📲</span>怎么报名</h2>
+        <p>扫描下方二维码进微信群，群里会通知线下签合同的时间和地点。</p>
+        <div class="qr-area">
+            <!-- ⚠️ 请把二维码图片命名为 qrcode.jpg，放在和这个文件同一目录下 -->
+            <img src="qrcode.jpg" alt="微信群二维码">
+            <p class="tip">长按识别二维码加入群聊</p>
+        </div>
+        <p style="margin-top:16px;color:#999;font-size:13px;">培训预计 <strong>7月7日至7月10日</strong> 开始，抓紧报名！</p>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer">
+        <p>星火数据科技有限公司 · 长沙市浏阳市</p>
+        <p>本页面信息仅供参考，具体以线下签署的实习合同为准</p>
+    </div>
+
+</div>
+
+</body>
+</html>
+
+							<script>
+                            	
+							</script>
+                        </body>
+                        </html>
+                    
